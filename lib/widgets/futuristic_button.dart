@@ -186,18 +186,3 @@ class LightningBorderPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
-
-// Usage example:
-// FuturisticButton(
-//   text: "Click Me",
-//   onPressed: () {
-//     print("Button pressed!");
-//   },
-//   width: 200,
-//   height: 50,
-//   backgroundColor: Color(0xFF1A1A1A),
-//   borderColor: Color(0xFF00FFAA),
-//   borderWidth: 2.0,
-//   borderRadius: 8.0,
-//   animationDuration: Duration(seconds: 2),
-// )

@@ -1,7 +1,7 @@
 name: cool_buttons
-description: "A new Flutter package project."
+description: "The Cool Buttons Flutter package (package:cool_buttons) is a collection of visually engaging, customizable button widgets designed to enhance the user interface of Flutter applications. It provides a variety of animated and stylized buttons, each with unique effects such as shimmering gradients, revolving animations, pulsating visuals, and futuristic designs, making them ideal for creating interactive and modern UI/UX experiences.."
 version: 0.0.1
-homepage:
+homepage: https://github.com/Pratyush-who/Cool_Buttons_Package
 
 environment:
   sdk: ^3.8.1
@@ -24,9 +24,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - images/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/to/asset-from-package

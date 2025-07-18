@@ -35,7 +35,6 @@ class _CompleteOrderButtonState extends State<CompleteOrderButton>
   late Animation<double> _packingAnimation;
   late Animation<double> _scaleAnimation;
   late Animation<double> _shimmerAnimation;
-  late Animation<Offset> _slideAnimation;
 
   bool _isLoading = false;
   bool _isCompleted = false;
@@ -78,14 +77,6 @@ class _CompleteOrderButtonState extends State<CompleteOrderButton>
     _shimmerAnimation = Tween<double>(
       begin: -1.0,
       end: 2.0,
-    ).animate(CurvedAnimation(
-      parent: _shimmerController,
-      curve: Curves.easeInOut,
-    ));
-
-    _slideAnimation = Tween<Offset>(
-      begin: const Offset(-1.0, 0.0),
-      end: const Offset(1.0, 0.0),
     ).animate(CurvedAnimation(
       parent: _shimmerController,
       curve: Curves.easeInOut,

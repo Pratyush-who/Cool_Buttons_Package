@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
+import 'package:flutter/foundation.dart'; // Added for debugPrint
 
 class EpicCreatePostButton extends StatefulWidget {
   final VoidCallback? onPressed;
@@ -37,7 +38,6 @@ class _EpicCreatePostButtonState extends State<EpicCreatePostButton>
   late Animation<double> _rotationAnimation;
 
   bool _isHovered = false;
-  bool _isPressed = false;
   bool _isLoading = false;
   bool _isCompleted = false;
   List<Particle> _particles = [];
@@ -142,38 +142,46 @@ class _EpicCreatePostButtonState extends State<EpicCreatePostButton>
     return colors[math.Random().nextInt(colors.length)];
   }
 
-  void _handleTap() async {
+  Future<void> _handleTap() async {
     if (_isLoading || _isCompleted) return;
 
     HapticFeedback.mediumImpact();
     _rotationController.forward();
     
     setState(() {
-      _isPressed = true;
       _isLoading = true;
     });
 
     _loadingController.forward();
 
-    await Future.delayed(const Duration(milliseconds: 2000));
+    try {
+      await Future.delayed(const Duration(milliseconds: 2000));
 
-    setState(() {
-      _isLoading = false;
-      _isCompleted = true;
-    });
-
-    HapticFeedback.heavyImpact();
-    widget.onPressed?.call();
-
-    await Future.delayed(const Duration(milliseconds: 2000));
-
-    if (mounted) {
       setState(() {
-        _isCompleted = false;
-        _isPressed = false;
+        _isLoading = false;
+        _isCompleted = true;
       });
-      _loadingController.reset();
-      _rotationController.reset();
+
+      HapticFeedback.heavyImpact();
+      widget.onPressed?.call();
+
+      await Future.delayed(const Duration(milliseconds: 2000));
+
+      if (mounted) {
+        setState(() {
+          _isCompleted = false;
+        });
+        _loadingController.reset();
+        _rotationController.reset();
+      }
+    } catch (e) {
+      debugPrint('Error in button animation: $e');
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _isCompleted = false;
+        });
+      }
     }
   }
 
@@ -233,6 +241,7 @@ class _EpicCreatePostButtonState extends State<EpicCreatePostButton>
                   ],
                 ),
                 child: Stack(
+                  clipBehavior: Clip.none,
                   children: [
                     // Background gradient
                     Container(

@@ -1,55 +1,37 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-/// A customizable button widget with revolving light animation and hover effects
-/// inspired by Aceternity UI design patterns.
 class DarkButton extends StatefulWidget {
-  /// The text to display on the button
   final String text;
 
-  /// Callback function when button is pressed
   final VoidCallback? onPressed;
 
-  /// Width of the button
   final double width;
 
-  /// Height of the button
   final double height;
 
-  /// Background color of the button
   final Color backgroundColor;
 
-  /// Color of the button text
   final Color textColor;
 
-  /// Border color in normal state
   final Color normalBorderColor;
 
-  /// Border color when hovering
   final Color hoverBorderColor;
 
-  /// Width of the border stroke
   final double borderWidth;
 
-  /// Border radius of the button
   final double borderRadius;
 
-  /// Custom text style for the button text
   final TextStyle? textStyle;
 
-  /// Duration of the revolving light animation
   final Duration animationDuration;
 
-  /// Duration of the hover transition
   final Duration hoverTransitionDuration;
 
-  /// Whether the button is enabled
   final bool isEnabled;
 
-  /// Radius of the glow effect
   final double glowRadius;
 
-  /// Length of the light segment as a percentage of the perimeter (0.0 to 1.0)
   final double lightSegmentLength;
 
   const DarkButton({
@@ -61,7 +43,7 @@ class DarkButton extends StatefulWidget {
     this.backgroundColor = const Color(0xFF0A0A0A),
     this.textColor = Colors.white,
     this.normalBorderColor = const Color(0xFF404040),
-    this.hoverBorderColor = const Color(0xFF3B82F6), // Blue from the image
+    this.hoverBorderColor = const Color(0xFF3B82F6),
     this.borderWidth = 1.0,
     this.borderRadius = 25.0,
     this.textStyle,
@@ -219,7 +201,8 @@ class _AceternityButtonState extends State<DarkButton>
                   child: Center(
                     child: Text(
                       widget.text,
-                      style: widget.textStyle ??
+                      style:
+                          widget.textStyle ??
                           TextStyle(
                             color: widget.isEnabled
                                 ? widget.textColor
@@ -297,11 +280,28 @@ class _RevolvingLightPainter extends CustomPainter {
     }
   }
 
-  void _drawFullBorderGlow(Canvas canvas, Path path, Color color, double intensity) {
+  void _drawFullBorderGlow(
+    Canvas canvas,
+    Path path,
+    Color color,
+    double intensity,
+  ) {
     final glowLayers = [
-      _GlowLayer(strokeWidth: borderWidth + glowRadius * 1.5, opacity: 0.15 * intensity, blurRadius: glowRadius * 0.8),
-      _GlowLayer(strokeWidth: borderWidth + glowRadius, opacity: 0.25 * intensity, blurRadius: glowRadius * 0.5),
-      _GlowLayer(strokeWidth: borderWidth, opacity: 0.9 * intensity, blurRadius: 0),
+      _GlowLayer(
+        strokeWidth: borderWidth + glowRadius * 1.5,
+        opacity: 0.15 * intensity,
+        blurRadius: glowRadius * 0.8,
+      ),
+      _GlowLayer(
+        strokeWidth: borderWidth + glowRadius,
+        opacity: 0.25 * intensity,
+        blurRadius: glowRadius * 0.5,
+      ),
+      _GlowLayer(
+        strokeWidth: borderWidth,
+        opacity: 0.9 * intensity,
+        blurRadius: 0,
+      ),
     ];
 
     for (final layer in glowLayers) {
@@ -317,7 +317,12 @@ class _RevolvingLightPainter extends CustomPainter {
     }
   }
 
-  void _drawRotatingLight(Canvas canvas, PathMetric pathMetrics, double totalLength, Color color) {
+  void _drawRotatingLight(
+    Canvas canvas,
+    PathMetric pathMetrics,
+    double totalLength,
+    Color color,
+  ) {
     final segmentLength = totalLength * lightSegmentLength;
     final currentPosition = (progress * totalLength) % totalLength;
     final startDistance = currentPosition;
@@ -326,8 +331,11 @@ class _RevolvingLightPainter extends CustomPainter {
     Path lightPath = endDistance > startDistance
         ? pathMetrics.extractPath(startDistance, endDistance)
         : (Path()
-          ..addPath(pathMetrics.extractPath(startDistance, totalLength), Offset.zero)
-          ..addPath(pathMetrics.extractPath(0, endDistance), Offset.zero));
+            ..addPath(
+              pathMetrics.extractPath(startDistance, totalLength),
+              Offset.zero,
+            )
+            ..addPath(pathMetrics.extractPath(0, endDistance), Offset.zero));
 
     final Rect bounds = lightPath.getBounds();
     final gradient = LinearGradient(

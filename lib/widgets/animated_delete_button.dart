@@ -77,7 +77,6 @@ class _AnimatedDeleteButtonState extends State<AnimatedDeleteButton>
     ).animate(CurvedAnimation(
       parent: _mainController,
       curve: const Interval(0.0, 0.1, curve: Curves.easeInOut),
-
     ));
     
     _rotationAnimation = Tween<double>(
@@ -119,7 +118,6 @@ class _AnimatedDeleteButtonState extends State<AnimatedDeleteButton>
       parent: _mainController,
       curve: const Interval(0.0, 0.3, curve: Curves.easeInOut),
     ));
-
   }
 
   @override
@@ -204,7 +202,7 @@ class _AnimatedDeleteButtonState extends State<AnimatedDeleteButton>
                     Center(
                       child: CustomPaint(
                         size: Size(size * 0.6, size * 0.6),
-                        painter: DustbinPainter(
+                        painter: _DustbinPainter(
                           lidProgress: _lidAnimation.value,
                           rotationProgress: _rotationAnimation.value,
                           color: widget.deleteColor ?? Colors.white,
@@ -247,13 +245,13 @@ class _AnimatedDeleteButtonState extends State<AnimatedDeleteButton>
   }
 }
 
-class DustbinPainter extends CustomPainter {
+class _DustbinPainter extends CustomPainter {
   final double lidProgress;
   final double rotationProgress;
   final Color color;
   final bool isPressed;
 
-  DustbinPainter({
+  const _DustbinPainter({
     required this.lidProgress,
     required this.rotationProgress,
     required this.color,
@@ -267,10 +265,6 @@ class DustbinPainter extends CustomPainter {
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
-
-    final fillPaint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
 
     final center = Offset(size.width / 2, size.height / 2);
     final binWidth = size.width * 0.6;
@@ -337,5 +331,9 @@ class DustbinPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  bool shouldRepaint(covariant _DustbinPainter oldDelegate) => 
+      lidProgress != oldDelegate.lidProgress ||
+      rotationProgress != oldDelegate.rotationProgress ||
+      color != oldDelegate.color ||
+      isPressed != oldDelegate.isPressed;
 }

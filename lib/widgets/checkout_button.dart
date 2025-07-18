@@ -42,7 +42,6 @@ class _CheckoutButtonState extends State<CheckoutButton>
   late Animation<double> _moneyFallAnimation;
   late Animation<double> _successAnimation;
   late Animation<double> _glowAnimation;
-  late Animation<Color?> _colorAnimation;
 
   bool _isProcessing = false;
   bool _isSuccess = false;
@@ -115,12 +114,6 @@ class _CheckoutButtonState extends State<CheckoutButton>
       parent: _glowController,
       curve: Curves.easeInOut,
     ));
-
-    _colorAnimation = ColorTween(
-      begin: const Color(0xFF10B981),
-      end: const Color(0xFF059669),
-    ).animate(_successController);
-
     // Start subtle glow animation
     _glowController.repeat(reverse: true);
   }
@@ -141,15 +134,12 @@ class _CheckoutButtonState extends State<CheckoutButton>
     HapticFeedback.mediumImpact();
     setState(() => _isProcessing = true);
 
-    // Start payment processing animation
     _paymentController.forward();
     
-    // Add money fall effect
     Future.delayed(const Duration(milliseconds: 1000), () {
       if (mounted) _moneyController.forward();
     });
 
-    // Simulate payment processing
     await Future.delayed(const Duration(milliseconds: 3000));
 
     setState(() {
@@ -161,7 +151,6 @@ class _CheckoutButtonState extends State<CheckoutButton>
     HapticFeedback.heavyImpact();
     widget.onPressed?.call();
 
-    // Reset after showing success
     await Future.delayed(const Duration(milliseconds: 2000));
     if (mounted) {
       setState(() => _isSuccess = false);
@@ -192,7 +181,6 @@ class _CheckoutButtonState extends State<CheckoutButton>
                   blurRadius: 12 + (4 * _glowAnimation.value),
                   offset: const Offset(0, 4),
                 ),
-                // Additional glow effect
                 if (_isSuccess)
                   BoxShadow(
                     color: (widget.afterColors?.first ?? Colors.green).withOpacity(0.2),
@@ -234,7 +222,6 @@ class _CheckoutButtonState extends State<CheckoutButton>
                   ),
                   child: Stack(
                     children: [
-                      // Money falling animation
                       if (_isProcessing)
                         ...List.generate(5, (index) {
                           return AnimatedBuilder(

@@ -54,7 +54,6 @@ class _ExploreButtonState extends State<ExploreButton>
   late Animation<Color?> _borderColorAnimation;
 
   bool _isHovering = false;
-  bool _isPressed = false;
 
   @override
   void initState() {
@@ -120,19 +119,16 @@ class _ExploreButtonState extends State<ExploreButton>
 
   void _handleTapDown(TapDownDetails details) {
     if (!widget.isEnabled) return;
-    setState(() => _isPressed = true);
     _pressController.forward();
   }
 
   void _handleTapUp(TapUpDetails details) {
     if (!widget.isEnabled) return;
-    setState(() => _isPressed = false);
     _pressController.reverse();
   }
 
   void _handleTapCancel() {
     if (!widget.isEnabled) return;
-    setState(() => _isPressed = false);
     _pressController.reverse();
   }
 

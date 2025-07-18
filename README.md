@@ -61,18 +61,16 @@ CheckoutButton(
 
 ## 📸 Preview
 
-<p align="center">Each button preview loops automatically (2–3 sec clips).</p>
-
 | Button | Preview |
 |--------|---------|
-| **Shimmer Button** | <video src="assets/images/shimmer.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Sleek Outlined Button** | <video src="assets/images/sleek.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Robotic Revolving Button** | <video src="assets/images/revolve.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Animated Delete Button** | <video src="assets/images/delete.mp4" width="180" autoplay loop muted playsinline></video> |
-| **AnimatedGet Started Button** | <video src="assets/images/get_started.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Complete Order Button** | <video src="assets/images/complete_order.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Checkout Button** | <video src="assets/images/checkout.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Epic Create Post Button** | <video src="assets/images/create_post.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Futuristic Button** | <video src="assets/images/futuristic.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Dark Button** | <video src="assets/images/dark.mp4" width="180" autoplay loop muted playsinline></video> |
-| **Get Started Button** | <video src="assets/images/explore.mp4" width="180" autoplay loop muted playsinline></video> |
+| **Shimmer Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/shimmer.gif) |
+| **Sleek Outlined Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/sleek.gif) |
+| **Robotic Revolving Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/revolve.gif) |
+| **Animated Delete Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/delete.gif) |
+| **Animated Get Started Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/get_started.gif) |
+| **Complete Order Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/complete_order.gif) |
+| **Checkout Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/checkout.gif) |
+| **Epic Create Post Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/create_post.gif) |
+| **Futuristic Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/futuristic.gif) |
+| **Dark Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/dark.gif) |
+| **Get Started Button** | ![](https://raw.githubusercontent.com/Pratyush-who/Cool_Buttons_Package/main/assets/images/explore.gif) |
